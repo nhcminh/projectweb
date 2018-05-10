@@ -15,7 +15,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
 
 
-    <body>
+      <body>
 
         <div class="body"></div>
         <div class="grad"></div>
@@ -27,11 +27,26 @@
             <form>
                 <input type="text" placeholder="Username" name="user"><br>
                 <input type="password" placeholder="Password" name="password"><br>                        
-                <input type="button" value="Login"><br>
+                <input type="submit" value="Login"><br>
                 <a href="Register.jsp" class="btn btn-default" role="button">Register</a>
                 <a href="Homepage.jsp" class="btn btn-default" role="button">Back HomePage</a>
             </form>
-
+            <% 
+                String username = request.getParameter("user");
+                String password = request.getParameter("password");
+                UserController controller = new UserController();
+                HttpSession s = request.getSession();
+                if(username == null || password == null){                    
+                }else if(controller.login(username, password)==true){
+                    User user = new User();
+                    user.setUsername(username);
+                    s.setAttribute("User", user);
+                    response.sendRedirect("Homepage.jsp");
+                }else{
+                    out.println("Enter again!!!");
+                }
+             
+            %>
         </div>
         <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     </body>
