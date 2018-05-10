@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Login
-    Created on : May 10, 2018, 2:01:09 PM
+    Document   : Register
+    Created on : May 10, 2018, 2:01:42 PM
     Author     : a2mrk
 --%>
 
@@ -16,20 +16,20 @@
 
 
     <body>
-
         <div class="body"></div>
         <div class="grad"></div>
         <div class="header">
-            <div>Login<span>Page</span></div>
+            <div>Register<span>Page</span></div>
         </div>
         <br>
         <div class="login">
-            <form>
+            <form>      
+                <input type="text" placeholder="Fullname" name="fullname"><br>
                 <input type="text" placeholder="Username" name="user"><br>
-                <input type="password" placeholder="Password" name="password"><br>                        
-                <input type="button" value="Login"><br>
-                <a href="Register.jsp" class="btn btn-default" role="button">Register</a>
-                <a href="Homepage.jsp" class="btn btn-default" role="button">Back HomePage</a>
+                <input type="password" placeholder="Password" name="password"><br>
+                <input type="email" placeholder="Email" name="email"><br>                                
+                <input type="button" value="Register"><br>                              
+                <a href="Login.jsp" class="btn btn-default" role="button">Login</a>
             </form>
 
         </div>
