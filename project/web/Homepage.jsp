@@ -19,10 +19,21 @@
     </head>
     <body>
 
+        <%
+            HttpSession s = request.getSession();
+            User user = (User) s.getAttribute("User");
+            UserController controller = new UserController();
+
+        %>
         <div class="topnav">
             <div class="home">
                 <a class="active" href="HomePage.jsp"><i class="fa fa-home"></i></a>
-                <a href="Login.jsp" class="btn btn-info" role="button">Login</a>
+                    <%  if (user.getUsername() == null) {
+                            out.println("<a href=\"Login.jsp\" class=\"btn btn-info\" role=\"button\">Login</a>");
+                        } else {
+                            out.println("<a href=\"#\" class=\"btn btn-info\" role=\"button\">"+user.getUsername()+"</a>");
+                        }
+                    %>
             </div>
             <div class="button">
                 <a href="#" class="btn btn-link" role="button">North Zone</a>
@@ -53,10 +64,10 @@
                 var i;
                 var x = document.getElementsByClassName("mySlides");
                 if (n > x.length) {
-                    slideIndex = 1
+                    slideIndex = 1;
                 }
                 if (n < 1) {
-                    slideIndex = x.length
+                    slideIndex = x.length;
                 }
                 for (i = 0; i < x.length; i++) {
                     x[i].style.display = "none";
@@ -69,6 +80,7 @@
             <a href="#" class="fa fa-facebook"></a>
             <a href="#" class="fa fa-twitter"></a>
         </div>
+
 
     </body>
 </html>
