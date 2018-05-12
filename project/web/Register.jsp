@@ -11,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="css/Style.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <title>Login Page</title>
+        <title>Register Page</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
 
 
@@ -30,6 +30,7 @@
                 <input type="email" placeholder="Email" name="email"><br>                                
                 <input type="button" value="Register"><br>                              
                 <a href="Login.jsp" class="btn btn-default" role="button">Login</a>
+                <a href="Homepage.jsp" class="btn btn-default" role="button">Back to Home</a>
             </form>
 
         </div>
