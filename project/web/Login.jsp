@@ -26,10 +26,11 @@
         <div class="login">
             <form>
                 <input type="text" placeholder="Username" name="user"><br>
-                <input type="password" placeholder="Password" name="password"><br>                        
+                <input type="password" placeholder="Password" name="password"><br>
+                <input type="checkbox" value="checkremember"> Remember Me <br>
                 <input type="submit" value="Login"><br>
                 <a href="Register.jsp" class="btn btn-default" role="button">Register</a>
-                <a href="Homepage.jsp" class="btn btn-default" role="button">Back HomePage</a>
+                <a href="Homepage.jsp" class="btn btn-default" role="button">Back to Home</a>
             </form>
             <% 
                 String username = request.getParameter("user");
