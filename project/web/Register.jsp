@@ -34,6 +34,21 @@
             </form>
 
         </div>
+        UserController controller = new UserController();
+            User user = new User();
+            String Fullname = request.getParameter("fullname");
+            String Username = request.getParameter("user");
+            String Password = request.getParameter("password");
+            String Password2 = request.getParameter("password2");
+            String Email = request.getParameter("Email");
+
+            if (Fullname != null && Username != null && Password != null && Password2 != null && Email != null & Password.equals(Password2)) {
+                user.setFullname(Fullname);
+                user.setUsername(Username);
+                user.setPassword(Password);
+                user.setEmail(Email);
+                controller.Register(user);
+            }
         <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     </body>
 
