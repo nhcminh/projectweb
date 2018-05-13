@@ -25,15 +25,34 @@
                     <a class="active" href="HomePage.jsp"><i class="fa fa-home"></i></a>
                         <%
                             HttpSession s = request.getSession();
+                            UserController controller = new UserController();
+                            User user;
+                            Cookie cs[] = request.getCookies();
+                            Cookie c = null;
+                            for (int i = 0; i < cs.length; i++) {
+                                if (cs[i].getName().equals("remember")) {
+                                    for (int j = 0; j < cs.length; j++) {
+                                        if (cs[j].getName().equals(cs[i].getValue()) && controller.login(cs[j].getName(), cs[j].getValue()) == true) {
+                                            user = controller.getInfor(cs[j].getName());
+                                            s.setAttribute("User", user);
+                                            break;
+                                        } else {
+                                            out.println("<a href=\"Login.jsp\" class=\"btn btn-info\" role=\"button\">Login</a>");
+                                        }
+                                    }
+                                    break;
+                                } else {
+                                }
+                            }
                             if (s.getAttribute("User") == null) {
                                 out.println("<a href=\"Login.jsp\" class=\"btn btn-info\" role=\"button\">Login</a>");
                             } else {
-                                User user = (User) s.getAttribute("User");
-                                UserController controller = new UserController();
+                                user = (User) s.getAttribute("User");
+                                System.out.println(user.getUsername());
                                 if (user.getUsername() == null) {
                                     out.println("<a href=\"Login.jsp\" class=\"btn btn-info\" role=\"button\">Login</a>");
                                 } else {
-                                    out.println("<a href=\"#\" class=\"btn btn-info\" role=\"button\">" + user.getUsername() + "</a>");
+                                    out.println("<a href=\"Profile.jsp\" class=\"btn btn-info\" role=\"button\">" + user.getFullname() + "</a>");
                                 }
                             }
                         %>
@@ -48,35 +67,6 @@
                 </div>
             </div>
         </header>
-        <div class="content">
-            <img class="mySlides" src="pictures/animal.jpg">
-            <img class="mySlides" src="pictures/blueberry.jpg">
-            <img class="mySlides" src="pictures/flower.jpg">
-            <img class="mySlides" src="pictures/seemed.jpg">
-            <button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
-            <button class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button>
-        </div>
-        <script>
-            var slideIndex = 1;
-            showDivs(slideIndex);
-            function plusDivs(n) {
-                showDivs(slideIndex += n);
-            }
-            function showDivs(n) {
-                var i;
-                var x = document.getElementsByClassName("mySlides");
-                if (n > x.length) {
-                    slideIndex = 1;
-                }
-                if (n < 1) {
-                    slideIndex = x.length;
-                }
-                for (i = 0; i < x.length; i++) {
-                    x[i].style.display = "none";
-                }
-                x[slideIndex - 1].style.display = "block";
-            }
-        </script>
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
