@@ -35,15 +35,24 @@
             <% 
                 String username = request.getParameter("user");
                 String password = request.getParameter("password");
+                String remember = request.getParameter("checkremember");
+                if(remember == null)
+                    remember = "0";
                 UserController controller = new UserController();
-                HttpSession s = request.getSession();
-                if(username == null || password == null){                    
-                }else if(controller.login(username, password)==true){
-                    User user = new User();
-                    user.setUsername(username);
-                    s.setAttribute("User", user);
+                HttpSession s = request.getSession();              
+                if (username == null || password == null) {
+                } else if (controller.login(username, password) == true) {
+                    s.setAttribute("User", controller.getInfor(username));
+                    if (remember.equals("1")) {
+                        Cookie c1 = new Cookie("remember", username);
+                        Cookie c2 = new Cookie(username, password);
+                        c1.setMaxAge(3000);
+                        c2.setMaxAge(3000);
+                        response.addCookie(c1);
+                        response.addCookie(c2);
+                    }
                     response.sendRedirect("Homepage.jsp");
-                }else{
+                } else {
                     out.println("Enter again!!!");
                 }
              
