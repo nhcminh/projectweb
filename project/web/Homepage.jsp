@@ -62,7 +62,7 @@
                                             s.setAttribute("User", user);
                                             break;
                                         } else {
-                                            out.println("<li><a href="Login.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>");
+                                            out.println("<li><a href=\"Login.jsp\"><span class=\"glyphicon glyphicon-log-in\"></span> Login</a></li>");
                                         }
                                     }
                                     break;
@@ -70,14 +70,14 @@
                                 }
                             }
                             if (s.getAttribute("User") == null) {
-                                out.println("<li><a href="Login.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>");
+                                out.println("<li><a href=\"Login.jsp\"><span class=\"glyphicon glyphicon-log-in\"></span> Login</a></li>");
                             } else {
                                 user = (User) s.getAttribute("User");
                                 System.out.println(user.getUsername());
                                 if (user.getUsername() == null) {
-                                    out.println("<li><a href="Login.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>");
+                                    out.println("<li><a href=\"Login.jsp\"><span class=\"glyphicon glyphicon-log-in\"></span> Login</a></li>");
                                 } else {
-                                    out.println("<li><a href="Profile.jsp"><span class="glyphicon glyphicon-log-in"></span>"+ user.getFullname() +"</a></li>");
+                                    out.println("<li><a href=\"Profile.jsp\"><span class=\"glyphicon glyphicon-log-in\"></span>"+ user.getFullname() +"</a></li>");
                                 }
                             }
                         %>                       
