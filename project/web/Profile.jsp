@@ -4,6 +4,7 @@
     Author     : Nghĩa
 --%>
 
+<%@page import="Model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,6 +18,12 @@
         <title>Profile</title>
     </head>
     <body data-spy="scroll" data-target=".navbar" data-offset="50">
+        <%
+                        HttpSession s = request.getSession();
+                        if (s.getAttribute("User") == null) {
+                        } else {
+                            User user = (User) s.getAttribute("User");
+                    %>
         <header>
             <nav class="navbar navbar-inverse navbar-fixed-top">
                 <div class="container-fluid">
@@ -44,8 +51,9 @@
                         </div>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="Register.jsp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                        <li><a href="Login.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <% 
+                        out.println("<li><a href=\"Profile.jsp\"><span class=\"glyphicon glyphicon-user\" style=\"padding-right: 10px;\"></span>"+ user.getFullname() +"</a></li>");
+                        %>
                     </ul>
                 </div>
             </nav>
@@ -62,23 +70,23 @@
                                         <li class="active"><a href="#demo" data-parent="#accordion" data-toggle="collapse">Profile</a></li></h4>
                                     <h4 class="panel-title">
                                         <li class="active"><a href="#demo1" data-parent="#accordion" data-toggle="collapse">Change Password</a></li></h4>
-<!--                                    <li><a href="#section3">Family</a></li>
-                                    <li><a href="#section3">Photos</a></li>-->
+                                    <!--                                    <li><a href="#section3">Family</a></li>
+                                                                        <li><a href="#section3">Photos</a></li>-->
                                 </div>
                             </div>
                         </ul><br>
                     </div>
-
+                    
                     <div class="col-sm-9">
                         <div id="demo"  class="panel-collapse collapse in">
                             <div class="panel-body">
                                 <h4><small>Contact Information</small></h4>
                                 <hr>
-                                <h2>User Name:</h2>
-                                <h5><span class="label label-success">Admin</span></h5><br>
+                                <h2>Full Name:<% out.println(""+user.getFullname()); %></h2>
+                                <h5><span class="label label-success"><%out.println(""+user.getRole()); %></span></h5><br>
                                 <p>Phone:0901434542</p>
                                 <p>Address:</p>
-                                <p>Email: huynhtrungnghia1995@gmail.com</p>
+                                <p>Email: <% out.println(""+user.getEmail()); }%></p>
                                 <p>Facebook:</p>
                                 <br>
                                 <h4><small>Basic Information</small></h4>
@@ -102,7 +110,7 @@
             </div>
         </div>
         <footer class="container-fluid">
-            <p>Footer Text</p>
+            <!--<p>Footer Text</p>-->
         </footer>
 
 
