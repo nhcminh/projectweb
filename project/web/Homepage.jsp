@@ -19,8 +19,22 @@
         <title>Home Page</title>
     </head>
     <body data-spy="scroll" data-target=".navbar" data-offset="50">
+        <button onclick="topFunction()" class="btn btn-primary btn-lg back-to-top" id="myBtn" style="display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: #338ed0;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+  ">Top</button>
         <header>
-            <nav class="navbar navbar-inverse navbar-fixed-top">
+            <nav class="navbar navbar-brand navbar-fixed-top">
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -131,5 +145,20 @@
             <a href="#" class="fa fa-facebook"></a>
             <a href="#" class="fa fa-twitter"></a>
         </div>
+         <script>
+            window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("myBtn").style.display = "block";
+    } else {
+        document.getElementById("myBtn").style.display = "none";
+    }
+}
+
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}</script>
     </body>
 </html>
