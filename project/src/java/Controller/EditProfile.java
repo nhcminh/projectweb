@@ -53,8 +53,6 @@ public class EditProfile extends HttpServlet {
             if (user == null) {
                 out.print("null");
             }
-            System.out.println(Birthday);
-            System.out.println(s.getMaxInactiveInterval());
             user.setEmail(Email);
             user.setFullname(Fullname);
             user.setDOB(a[2]+"-"+a[1]+"-"+a[0]);
