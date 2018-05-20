@@ -15,26 +15,22 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script src="js/profile.js"></script>
         <title>Profile</title>
     </head>
     <body data-spy="scroll" data-target=".navbar" data-offset="50">
         <%
-                        HttpSession s = request.getSession();
-                        if (s.getAttribute("User") == null) {
-                            response.sendRedirect("Homepage.jsp");
-                        } else {
-                            User user = (User) s.getAttribute("User");
-                    %>
+            HttpSession s = request.getSession();
+            if (s.getAttribute("User") == null) {
+                response.sendRedirect("Homepage.jsp");
+            } else {
+                User user = (User) s.getAttribute("User");
+        %>
         <header>
-            <nav class="navbar navbar-brand navbar-fixed-top">
+            <nav class="navbar navbar-brand navbar-fixed-top ">
                 <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>                        
-                        </button>
+                    <div class="navbar-header" style="padding-left: 5%;">
                         <a class="navbar-brand" href="Homepage.jsp">HMN Travel</a>
                     </div>
                     <ul class="nav navbar-nav">
@@ -58,32 +54,41 @@
                             </div>
                         </div>
                     </form>
-                    <ul class="nav navbar-nav navbar-right">
-                        <% 
-                        out.println("<li>"
-                                                + "<div class=\"dropdown\">\n"
-                                                + "  <button id=\"buttonuser\" class=\"btn btn-primary dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\">"
-                                                + "     <span class=\"glyphicon glyphicon-user\"></span>\n"
-                                                + user.getFullname()
-                                                + "     <span class=\"caret\"></span></button>\n"
-                                                + "     <ul class=\"dropdown-menu\">\n"
-                                                + "         <li><a href=\"Profile.jsp\">Profile</a></li>\n"
-                                                + "         <li><a href=\"#\">Write Article</a></li>\n"
-                                                + "         <li class=\"divider\"></li>"
-                                                + "         <li><a href=\"Logout\">Logout</a></li>\n"
-                                                + "     </ul>\n"
-                                                + "</div>"
-                                              + "</li>");
+                    <ul class="nav navbar-nav navbar-right" style="padding-right: 5%;">
+                        <%
+                            out.println("<li>"
+                                    + "<div class=\"dropdown\">\n"
+                                    + "<a style=\"margin-right: 10px;\">"
+                                    + "<img src=\"pictures/animal.jpg\" alt=\"Avatar\" class=\"avatar\"> \n"
+                                    + "</a>"
+                                    + "<div style=\"float: right; margin-top: 10%; font-size: x-large; color: #338ed0;\">"
+                                    + user.getFullname().toUpperCase()
+                                    + "</div>"
+                                    + "</li>"
+                                    + "<li>"
+                                    + "<button style=\"background-color: white; color: #338ed0; padding-top: 30%; background: transparent\" class=\"btn dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\">\n"
+                                    + "<span id=\"caret\" class=\"caret\"></span>"
+                                    + "</button>\n"
+                                    + "<ul class=\"dropdown-menu\">\n"
+                                    + "<li><a class=\"glyphicon glyphicon-file blue\" style=\"color:#338ed0\" href=\"Profile.jsp\"><b style=\"margin-left: 20%;\">Profile</b></a></li>\n"
+                                    + "<li><a class=\"glyphicon glyphicon-edit\" style=\"color:#338ed0\" href=\"#\"><b style=\"margin-left: 20%;\">Write Post</a></b></li>\n"
+                                    + "<li class=\"divider\"></li>"
+                                    + "<li><a class=\"glyphicon glyphicon-off\" style=\"color:#338ed0\" href=\"Logout\"><b style=\"margin-left: 20%;\">Logout</a></b></li>\n"
+                                    + "</ul>\n"
+                                    + "</div>"
+                                    + "</li>");
                         %>
                     </ul>
                 </div>
                 <hr>
             </nav>
         </header>
-                    <div class="container">
+        <div class="body"></div>
+        <div class="grad"></div>
+        <div class="container">
             <div class="panel-group" id="accordion" >
                 <div class="panel panel-default">
-                    <div class="panel-heading">
+                    <div class="panel-heading" style="background-color: #fff0f5;">
                         <h2 style="color:#338ed0;"><strong>User Profile</strong></h2>
                         <h4 class="panel-title profile">
                             <a href="#"  style="color:#00BFFF;">Profile</a>
@@ -99,20 +104,21 @@
                             Contact Information
                         </h3>
                         <hr>
-                        <h2>User Name: <% out.println(""+user.getFullname()); %></h2>
+                        <h2>User Name: <% out.println("" + user.getFullname()); %></h2>
                         <h5>
-                            <span class="label label-success"><%out.println(""+user.getRole()); %></span>
+                            <span class="label label-success"><%out.println("" + user.getRole()); %></span>
                         </h5>
                         <br>
-                        <p>Phone:0901434542</p>
-                        <p>Email: <% out.println(""+user.getEmail()); %></p>
+                        <p>Phone:<% out.println("" + user.getPhonenumber()); %></p>                                
+                        <p>Email: <% out.println("" + user.getEmail()); %></p>
                         <br>
-                        <h4>
-                            <small>Basic Information</small>
+                        <h4 style="color:#338ed0;">
+                            Basic Information
                         </h4>
                         <hr>
-                        <p>Birthday: <% out.println(""+user.getDOB()); %></p>
-                        <p>Gender: <% out.println(""+user.getGender()); }%></p>
+                        <p>Birthday: <% out.println("" + user.getDOB()); %></p>
+                        <p>Gender: <% out.println("" + user.getGender());
+                            }%></p>
                         <hr>
                         <!--</div>-->
                         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Edit Profile</button>
