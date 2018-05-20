@@ -16,32 +16,47 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+        <style>
+            #myBtn{
+                display: none;
+                position: fixed;
+                bottom: 20px;
+                right: 30px;
+                z-index: 99;
+                font-size: 18px;
+                border: none;
+                outline: none;
+                background-color: #338ed0;
+                color: white;
+                cursor: pointer;
+                padding: 15px;
+                border-radius: 4px;
+            }
+            #myBtn:hover{
+                opacity: 0.5;
+            }
+            .avatar {
+                vertical-align: middle;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                margin-top: 5%;
+            }
+            #caret{
+                border-top: 10px dashed;
+                border-left: 10px solid transparent;
+                border-right: 10px solid transparent;
+            }
+        </style>
         <title>Home Page</title>
     </head>
     <body data-spy="scroll" data-target=".navbar" data-offset="50">
-        <button onclick="topFunction()" class="btn btn-primary btn-lg back-to-top" id="myBtn" style="display: none;
-  position: fixed;
-  bottom: 20px;
-  right: 30px;
-  z-index: 99;
-  font-size: 18px;
-  border: none;
-  outline: none;
-  background-color: #338ed0;
-  color: white;
-  cursor: pointer;
-  padding: 15px;
-  border-radius: 4px;
-  ">Top</button>
+        <button onclick="topFunction()" class="btn btn-primary btn-lg back-to-top" id="myBtn">Top</button>
         <header>
             <nav class="navbar navbar-brand navbar-fixed-top">
                 <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>                        
-      </button>
+                    <div class="navbar-header" style="padding-left: 5%;">
                         <a class="navbar-brand" href="Homepage.jsp">HMN Travel</a>
                     </div>
                     <ul class="nav navbar-nav">
@@ -59,10 +74,9 @@
                             </div>
                         </div>
                     </form>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="Register.jsp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                        <%
+                    <ul class="nav navbar-nav navbar-right" style="padding-right: 5%;">
 
+                        <%
                             HttpSession s = request.getSession();
                             UserController controller = new UserController();
                             User user;
@@ -76,7 +90,7 @@
                                             s.setAttribute("User", user);
                                             break;
                                         } else {
-                                            out.println("<li><a href=\"Login.jsp\"><span class=\"glyphicon glyphicon-log-in\"></span> Login</a></li>");
+                                            break;
                                         }
                                     }
                                     break;
@@ -84,19 +98,42 @@
                                 }
                             }
                             if (s.getAttribute("User") == null) {
-                                out.println("<li><a href=\"Login.jsp\"><span class=\"glyphicon glyphicon-log-in\"></span> Login</a></li>");
+                                out.println("<li><a href=\"Register.jsp\"><span class=\"glyphicon glyphicon-user\"></span> Sign Up</a></li>"
+                                        + "<li><a href=\"Login.jsp\"><span class=\"glyphicon glyphicon-log-in\"></span> Login</a></li>");
                             } else {
                                 user = (User) s.getAttribute("User");
-                                System.out.println(user.getUsername());
                                 if (user.getUsername() == null) {
-                                    out.println("<li><a href=\"Login.jsp\"><span class=\"glyphicon glyphicon-log-in\"></span> Login</a></li>");
+                                    out.println("<li><a href=\"Register.jsp\"><span class=\"glyphicon glyphicon-user\"></span> Sign Up</a></li>"
+                                            + "<li><a href=\"Login.jsp\"><span class=\"glyphicon glyphicon-log-in\"></span> Login</a></li>");
                                 } else {
-                                    out.println("<li><a href=\"Profile.jsp\"><span class=\"glyphicon glyphicon-log-in\"></span>"+ user.getFullname() +"</a></li>");
+                                    out.println("<li>"
+                                            +       "<div class=\"dropdown\">\n"
+                                            +           "<a style=\"margin-right: 10px;\">"
+                                            +               "<img src=\"pictures/animal.jpg\" alt=\"Avatar\" class=\"avatar\"> \n" 
+                                            +           "</a>"
+                                            +       "<div style=\"float: right; margin-top: 10%; font-size: x-large; color: #338ed0;\">"
+                                            +           user.getFullname().toUpperCase()
+                                            +       "</div>"
+                                            + "</li>"
+                                            + "<li>"
+                                            +       "<button style=\"background-color: white; color: #338ed0; padding-top: 30%; background: transparent\" class=\"btn dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\">\n"
+                                            +           "<span id=\"caret\" class=\"caret\"></span>"
+                                            +       "</button>\n"
+                                            +       "<ul class=\"dropdown-menu\">\n"
+                                            +           "<li><a class=\"glyphicon glyphicon-file blue\" style=\"color:#338ed0\" href=\"Profile.jsp\"><b style=\"margin-left: 20%;\">Profile</b></a></li>\n"
+                                            +           "<li><a class=\"glyphicon glyphicon-edit\" style=\"color:#338ed0\" href=\"#\"><b style=\"margin-left: 20%;\">Write Post</a></b></li>\n"
+                                            +           "<li class=\"divider\"></li>"
+                                            +           "<li><a class=\"glyphicon glyphicon-off\" style=\"color:#338ed0\" href=\"Logout\"><b style=\"margin-left: 20%;\">Logout</a></b></li>\n"
+                                            +       "</ul>\n"
+                                            +       "</div>"
+                                            + "</li>"
+                                    );
                                 }
                             }
                         %>                       
                     </ul>
                 </div>
+                <hr>
             </nav>
         </header>
         <div class="container">
@@ -112,18 +149,18 @@
                 <div class="carousel-inner">
 
                     <div class="item active">
-                        <img src="Pictures/animal.jpg" alt="animal" style="width:100%; height:500px; ">
+                        <img src="pictures/animal.jpg" alt="animal" style="width:100%; height:500px; ">
                         <div class="carousel-caption">
                         </div>
                     </div>
                     <div class="item">
-                        <img src="Pictures/blueberry.jpg" alt="blueberry" style="width:100%;    height:500px;">
+                        <img src="pictures/blueberry.jpg" alt="blueberry" style="width:100%;    height:500px;">
                         <div class="carousel-caption">
                         </div>
                     </div>
 
                     <div class="item">
-                        <img src="Pictures/seemed.jpg" alt="seemed" style="width:100%;  height:500px;">
+                        <img src="pictures/seemed.jpg" alt="seemed" style="width:100%;  height:500px;">
                         <div class="carousel-caption">
                         </div>
                     </div> 
@@ -140,25 +177,31 @@
                 </a>
             </div>
         </div>
+        <hr>
+        <hr>
+        <hr>
         <div class="footer">
             <a href="#" class="fa fa-instagram"></a>
             <a href="#" class="fa fa-facebook"></a>
             <a href="#" class="fa fa-twitter"></a>
         </div>
-         <script>
-            window.onscroll = function() {scrollFunction()};
+        <script>
+            window.onscroll = function () {
+                scrollFunction();
+            };
 
-function scrollFunction() {
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        document.getElementById("myBtn").style.display = "block";
-    } else {
-        document.getElementById("myBtn").style.display = "none";
-    }
-}
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("myBtn").style.display = "block";
+                } else {
+                    document.getElementById("myBtn").style.display = "none";
+                }
+            }
 
-function topFunction() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-}</script>
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }</script>
     </body>
+</body>
 </html>
