@@ -28,24 +28,23 @@ public class ArticleController {
         re = stm.executeQuery(query);
     }
 
-    public void addAriticle(Article article) throws SQLException {
-        stm.executeUpdate("insert into article values ('" + article.getTitle()+"',"
-                + "'" + article.getAuthor() + "',"
-                + "'" + article.getCategory() + "',"
-                + "'" + article.getContent() + "',"
-                + "'" + article.getApproveBy() + "',"
-                + "'" + article.getDateCreate().toString() + "',"
-                + "'" + article.isIsHot() + "',"
-                + "'" + article.isIsPending()+"')");
+    public void addAriticle(Article article) throws SQLException, ClassNotFoundException {
+        connection("select * from article");
+        stm.executeUpdate("INSERT INTO article (ArticleTitle,ArticleCategory,ArticleAuthor,ArticleContent,ArticleIsPending,ArticleDateCreate,ArticleIsHot,ArticleApproveBy) values ('"+article.getTitle()+"','"+article.getCategory()+"','"+article.getAuthor()+"','"+article.getIsPending()+"','"+article.getContent()+"','"+article.getApproveBy()+"','"+article.getDateCreate().toString()+"','"+article.getIsHot()+"')");
     }
-    public void approveArticle(String name, Article article) throws SQLException{
-        stm.executeUpdate("update Article set ApproveBy='"+name+"' where Title='"+article.getTitle()+"'");
-        stm.executeUpdate("update Article set IsPending='fasle' where Title='"+article.getTitle()+"'");
+
+    public void approveArticle(String name, Article article) throws SQLException, ClassNotFoundException {
+        connection("select * from article");
+        stm.executeUpdate("update Article set ApproveBy='" + name + "' where Title='" + article.getTitle() + "'");
+        stm.executeUpdate("update Article set IsPending='fasle' where Title='" + article.getTitle() + "'");
     }
-    public void deleteArticle(Article article) throws SQLException{
-        stm.executeUpdate("delete from Article where Title='"+article.getTitle()+"'");
+
+    public void deleteArticle(Article article) throws SQLException, ClassNotFoundException {
+        connection("select * from article");
+        stm.executeUpdate("delete from Article where Title='" + article.getTitle() + "'");
     }
-    public void changeCategory(String newcategory,Article article) throws SQLException{
-        stm.executeUpdate("update Article set Category='"+newcategory+"' where Title='"+article.getTitle()+"'");
+
+    public void changeCategory(String newcategory, Article article) throws SQLException {
+        stm.executeUpdate("update Article set Category='" + newcategory + "' where Title='" + article.getTitle() + "'");
     }
 }
