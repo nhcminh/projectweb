@@ -3,7 +3,8 @@
     Created on : May 10, 2018, 2:00:37 PM
     Author     : a2mrk
 --%>
-
+<%@page import="Model.StringBean"%>
+<%@page import="Model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
