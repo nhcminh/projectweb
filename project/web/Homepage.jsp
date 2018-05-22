@@ -107,27 +107,26 @@
                                             + "<li><a href=\"Login.jsp\"><span class=\"glyphicon glyphicon-log-in\"></span> Login</a></li>");
                                 } else {
                                     out.println("<li>"
-                                            +       "<div class=\"dropdown\">\n"
-                                            +           "<a style=\"margin-right: 10px;\">"
-                                            +               "<img src=\"pictures/animal.jpg\" alt=\"Avatar\" class=\"avatar\"> \n" 
-                                            +           "</a>"
-                                            +       "<div style=\"float: right; margin-top: 10%; font-size: x-large; color: #338ed0;\">"
-                                            +           user.getFullname().toUpperCase()
-                                            +       "</div>"
-                                            + "</li>"
-                                            + "<li>"
-                                            +       "<button style=\"background-color: white; color: #338ed0; padding-top: 30%; background: transparent\" class=\"btn dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\">\n"
-                                            +           "<span id=\"caret\" class=\"caret\"></span>"
-                                            +       "</button>\n"
-                                            +       "<ul class=\"dropdown-menu\">\n"
-                                            +           "<li><a class=\"glyphicon glyphicon-file blue\" style=\"color:#338ed0\" href=\"Profile.jsp\"><b style=\"margin-left: 20%;\">Profile</b></a></li>\n"
-                                            +           "<li><a class=\"glyphicon glyphicon-edit\" style=\"color:#338ed0\" href=\"#\"><b style=\"margin-left: 20%;\">Write Post</a></b></li>\n"
-                                            +           "<li class=\"divider\"></li>"
-                                            +           "<li><a class=\"glyphicon glyphicon-off\" style=\"color:#338ed0\" href=\"Logout\"><b style=\"margin-left: 20%;\">Logout</a></b></li>\n"
-                                            +       "</ul>\n"
-                                            +       "</div>"
-                                            + "</li>"
-                                    );
+                                    + "<div class=\"dropdown\">\n"
+                                    + "<a style=\"margin-right: 10px;\">"
+                                    + "<img src=\"pictures/animal.jpg\" alt=\"Avatar\" class=\"avatar\"> \n"
+                                    + "</a>"
+                                    + "<div style=\"white-space: nowrap;overflow: hidden; text-overflow:ellipsis; width:120px; float: right; margin-top: 10%; font-size: x-large; color: #338ed0;\">"
+                                    + user.getFullname()
+                                    + "</div>"
+                                    + "</li>"
+                                    + "<li>"
+                                    + "<button style=\"background-color: white; color: #338ed0; padding-top: 30%; background: transparent\" class=\"btn dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\">\n"
+                                    + "<span id=\"caret\" class=\"caret\"></span>"
+                                    + "</button>\n"
+                                    + "<ul class=\"dropdown-menu\">\n"
+                                    + "<li><a class=\"glyphicon glyphicon-file blue\" style=\"color:#338ed0\" href=\"Profile.jsp\"><b style=\"margin-left: 20%;\">Profile</b></a></li>\n"
+                                    + "<li><a class=\"glyphicon glyphicon-edit\" style=\"color:#338ed0\" href=\"#\"><b style=\"margin-left: 20%;\">Write Post</a></b></li>\n"
+                                    + "<li class=\"divider\"></li>"
+                                    + "<li><a class=\"glyphicon glyphicon-off\" style=\"color:#338ed0\" href=\"Logout\"><b style=\"margin-left: 20%;\">Logout</a></b></li>\n"
+                                    + "</ul>\n"
+                                    + "</div>"
+                                    + "</li>");
                                 }
                             }
                         %>                       
