@@ -4,6 +4,7 @@
     Author     : Nghĩa
 --%>
 
+<%@page import="Model.StringBean"%>
 <%@page import="Model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,6 +19,25 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script src="js/profile.js"></script>
         <title>Profile</title>
+        <style>
+            .avatar {
+                vertical-align: middle;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                
+            }
+            #avatar{
+                width: 45px;
+                height: 45px;
+                padding: 0px;
+                border-radius: 50%;
+                background-color: white;
+            }
+            #avatar:hover, avatar:focus{
+                background-color: white;
+            }
+        </style>
     </head>
     <body data-spy="scroll" data-target=".navbar" data-offset="50">
         <%
@@ -26,63 +46,10 @@
                 response.sendRedirect("Homepage.jsp");
             } else {
                 User user = (User) s.getAttribute("User");
+                StringBean print = new StringBean();
+                out.println(print.header(user, s));
         %>
-        <header>
-            <nav class="navbar navbar-brand navbar-fixed-top ">
-                <div class="container-fluid">
-                    <div class="navbar-header" style="padding-left: 5%;">
-                        <a class="navbar-brand" href="Homepage.jsp">HMN Travel</a>
-                    </div>
-                    <ul class="nav navbar-nav">
-                        <li>
-                            <a href="Northzone.jsp">North Zone</a>
-                        </li>
-                        <li>
-                            <a href="Centralzone.jsp">Central Zone</a>
-                        </li>
-                        <li>
-                            <a href="Southzone.jsp">South Zone</a>
-                        </li>
-                    </ul>
-                    <form class="navbar-form navbar-left" action="/action_page.php">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search" name="search">
-                            <div class="input-group-btn">
-                                <button class="btn btn-default" type="submit">
-                                    <i class="glyphicon glyphicon-search"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                    <ul class="nav navbar-nav navbar-right" style="padding-right: 5%;">
-                        <%
-                            out.println("<li>"
-                                    + "<div class=\"dropdown\">\n"
-                                    + "<a style=\"margin-right: 10px;\">"
-                                    + "<img src=\"pictures/animal.jpg\" alt=\"Avatar\" class=\"avatar\"> \n"
-                                    + "</a>"
-                                    + "<div style=\"float: right; margin-top: 10%; font-size: x-large; color: #338ed0;\">"
-                                    + user.getFullname().toUpperCase()
-                                    + "</div>"
-                                    + "</li>"
-                                    + "<li>"
-                                    + "<button style=\"background-color: white; color: #338ed0; padding-top: 30%; background: transparent\" class=\"btn dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\">\n"
-                                    + "<span id=\"caret\" class=\"caret\"></span>"
-                                    + "</button>\n"
-                                    + "<ul class=\"dropdown-menu\">\n"
-                                    + "<li><a class=\"glyphicon glyphicon-file blue\" style=\"color:#338ed0\" href=\"Profile.jsp\"><b style=\"margin-left: 20%;\">Profile</b></a></li>\n"
-                                    + "<li><a class=\"glyphicon glyphicon-edit\" style=\"color:#338ed0\" href=\"#\"><b style=\"margin-left: 20%;\">Write Post</a></b></li>\n"
-                                    + "<li class=\"divider\"></li>"
-                                    + "<li><a class=\"glyphicon glyphicon-off\" style=\"color:#338ed0\" href=\"Logout\"><b style=\"margin-left: 20%;\">Logout</a></b></li>\n"
-                                    + "</ul>\n"
-                                    + "</div>"
-                                    + "</li>");
-                        %>
-                    </ul>
-                </div>
-                <hr>
-            </nav>
-        </header>
+        
         <div class="body"></div>
         <div class="grad"></div>
         <div class="container">
