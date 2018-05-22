@@ -99,6 +99,14 @@
                         <tr>
                             <td>Title : </td><td><input type="text" name="title" id="texttitle" size="40"/></td>
                         </tr>
+                        <tr><td></td><td><select onchange="createEditor( this.value );" id="languages">
+            <option value="en-gb">English (United Kingdom)</option>
+            <option value="vi">Vietnamese</option>
+            <option value="zh-cn">Chinese Simplified</option>
+            <option value="zh">Chinese Traditional</option>
+         </select>
+         </td></tr>
+
                         <tr>
                             <td>Content : </td><td><textarea name="content" id="textcontent" rows="10" cols="40"></textarea></td>
                         </tr>
@@ -109,9 +117,24 @@
                                 <input type="radio" name="zone" value="south"> South</td>
                         </tr>    
                         <tr><td></td><td>          <input type="submit" value="Submit Post"></td></tr>
-                        <script type="text/javascript" language="javascript">
-                            CKEDITOR.replace('content');
-                        </script>  
+                             var editor;
+             
+            function createEditor( languageCode ) {
+                if ( editor )
+                    editor.destroy();                      
+                editor = CKEDITOR.replace( 'content', {
+                    language: languageCode,
+             
+                    on: {
+                        instanceReady: function() {
+                            var languages = document.getElementById( 'languages' );
+                            languages.value = this.langCode;
+                            languages.disabled = false;
+                        }
+                    }
+                });
+            }          
+            createEditor( '' );
 
                     </table>
                 </form>
