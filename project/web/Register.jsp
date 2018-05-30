@@ -15,7 +15,51 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <title>Register Page</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
-
+        <script>
+        <script type="text/javascript">
+            function check(){
+            var fullname = document.forms["myForm"]["fullname"].value;
+            if (fullname == "")
+            {
+                alert("Please enter fullname!!"); 
+                return false;
+            }
+            var username = document.forms["myForm"]["user"].value;
+            if (username == "")
+            {
+                alert("Please enter username!!");
+                return false;
+            }
+            var email = document.forms["myForm"]["email"].value;
+            var checkemail =email.indexOf("@");
+            var point = email.lastIndexOf(".");
+            if (email == "") {
+            alert("Email Not Empty");
+            return false;
+            }
+            else if ((checkemail <1) || (point< checkemail +2) || (point+2>email.length)) {
+            alert("Email Wrong");
+            return false;
+            }
+            var password = document.forms["myForm"]["password"].value;
+            var repassword = document.forms["myForm"]["password2"].value;
+            if (password == "")
+            {
+                alert("Password Not Empty");
+            return false;
+            }
+            if (repassword == "")
+            {
+                alert("Re-Password Not Empty");
+            return false;
+            }
+            if (password != repassword)
+            {
+                alert("Password and Re-Password not match");
+                return false;
+            }}
+            </script>
+        </script>
 
     <body>
 
