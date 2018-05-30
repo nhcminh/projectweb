@@ -19,6 +19,47 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script src="js/profile.js"></script>
         <title>Profile</title>
+        <script>
+            function checkprofile(){
+            
+            var email=document.forms["profile"]["email"].value;
+            var checkemail =email.indexOf("@");
+            var point = email.lastIndexOf(".");
+            if (email == "") {
+            alert("Email Not Empty");
+            return false;
+            }
+            else if ((checkemail <1) || (point< checkemail +2) || (point+2>email.length)) {
+            alert("Email Wrong");
+            return false;
+            }
+            }
+            function checkpass(){
+                var password =document.forms["pass"]["newpassword"].value;
+                var newpassword =document.forms["pass"]["newpassword"].value;
+            var repassword =document.forms["pass"]["newpassword1"].value;
+            if (password=="")
+            {
+                alert("Password Not Empty");
+            return false;
+            }
+             if (newpassword=="")
+            {
+                alert("New Password Not Empty");
+            return false;
+            }
+            if (repassword=="")
+            {
+                alert("New Re-Password Not Empty");
+            return false;
+            }
+            if (newpassword != repassword)
+            {
+                alert("New Password and New Re-Password not match");
+                return false;
+            }
+            }
+        </script>
         <style>
             .avatar {
                 vertical-align: middle;
